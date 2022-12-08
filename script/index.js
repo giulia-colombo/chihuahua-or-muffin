@@ -3,15 +3,19 @@
 //start with a clear game area
 //1.a display imgs - done
 //1.b display a random category - done
-//1.c start timer
+//1.c start timer   
+    //NOT WORKING PROPERLY  - not starting exactly from 0
 
 //2. when img clicked
 // nb the array that contains the cards could be shuffled everytime the play button is played
-//2.a check category, display right or wrong message - done
+//2.a check category, display right or wrong message - THIS NOT WORKING WELL
+//only works on game restart, not on game play
+
 //2.b shade img - done
 //2.c if category right, display category - done
 //2.d if all cards clicked - game finished - done
-//2.e if category wrong,  game finished/over // done
+//2.e if category wrong,  game finished/over // THIS NOT WORKING PROP
+
 
 //4. if time runs out
 //game game finished/over - DONE
@@ -33,6 +37,7 @@
 //1 - we click on all the right images: game won - needs work
 //2 - we click on one wrong image: game lost - WORKS, but not showing play again
 //3 - time runs out: game lost - WORKS, but not showing play again
+//4 - we don't click on all the right images in time - game lost
 
 
 
@@ -226,7 +231,7 @@ class gameArea {
 
         clock = setInterval(() => {
             if (this.timer >= 0) {
-                countdown.innerHTML = this.timer;
+                countdown.innerHTML = `Time: ${this.timer}`;
             } else {
                 this.displayGameOver();
             }
