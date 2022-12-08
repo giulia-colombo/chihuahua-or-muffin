@@ -39,6 +39,13 @@
 //3 - time runs out: game lost - WORKS, but not showing play again
 //4 - we don't click on all the right images in time - game lost
 
+//THINGS STILL NOT WORKING PROPERLY:
+//if we click on the correct card, and the on a wrong card, we don't get the msg "Sure that was chihuahua/muffin?" - fixed, I think
+//timer is not working properly when we Play Again - doesn't start from 0
+//play again should not display the game board - fixed, I think
+// "oh oh time is out" is stil displaying when we relaunch the game - fixed, I think
+//start screen shouldn't display game board on load - FIXED, I THINK
+
 
 
 const screenPlay = document.querySelector("#screen-play");
@@ -84,9 +91,7 @@ class gameArea {
         this.height = "300px";
         this.category = "";
         this.cardsClicked = [];
-        this.gameFinished = false;
-        this.gameStatus = "";
-        this.timer = 10;
+        this.timer = 7;
 
     }
 
@@ -133,16 +138,12 @@ class gameArea {
         
     }
 
-
-    // shuffleImages () {
-        //function that shuffles the array of images
-    // }
-
     displayCategory () {
         //pick a random category between chihuahua and muffin
         //display inside the h1 tag in #screen-play
         this.category = categories[Math.floor(Math.random()*categories.length)];
-        displayedCategory.innerText = `Get all the ${this.category}s!`;
+        const thisCategoryLow = this.category.toLowerCase()
+        displayedCategory.innerText = `Get all the ${thisCategoryLow}s!`;
         this.attachClickEvent();
     }
 
@@ -154,17 +155,24 @@ class gameArea {
                 let clickedCategory = clickedCard.getAttribute("category");
                 // console.log(clickedCategory);
                 // console.log(this.category);
-                const thisCategoryLow = (this.category).toLowerCase()
+                const thisCategoryLow = this.category.toLowerCase()
                 if (clickedCategory === thisCategoryLow) {
                     message.innerHTML = `Yay! It's a ${thisCategoryLow}! :)`;
-                    clickedCard.style.opacity = "0.8"
+                    clickedCard.style.filter = "grayscale(100%)";
+                    clickedCard.style.opacity = 0.3;
                     this.cardsClicked.push(clickedCard);
                     // this.gameStatus = "won";
                     this.checkGameWon();
                 }
                 if (clickedCategory !== thisCategoryLow) {
+                    message.style.display = "block";
                     message.innerHTML = `Are you sure that was a ${thisCategoryLow}? :( `
+                    countdown.style.display = "none";
+                    console.log("message: ", message, "countdown: ", countdown);
+                    
+    
                     this.displayGameOver();
+                    
                 }
             })
         })
@@ -179,46 +187,55 @@ class gameArea {
 
     displayGameWon () {
         // gameBoard.style.display = "none";
+        countdown.innerHTML = "";
         countdown.style.display = "none";
         displayedCategory.style.display = "none";
+        setTimeout(() => {
+            message.style.display = "none";
+        },2000)        
         gameStatusMessage.style.display = "block";
         gameStatusMessage.innerHTML = "You won!"
-        message.style.display = "none";
-        setTimeout(() => {
-            this.playAgain();
-        }, 2000);
+        this.playAgain();
+ 
     }
  
     displayGameOver () {
         // gameBoard.style.display = "none";
+        countdown.innerHTML = "";
         countdown.style.display = "none";
         displayedCategory.style.display = "none";
+        setTimeout(() => {
+            message.style.display = "none";
+        },2000)
+        
         gameStatusMessage.style.display = "block";
         gameStatusMessage.innerHTML = "Game over!" //too fast
-
-        // this.gameFinished = true;
-        setTimeout(() => {
-            this.playAgain();
-        }, 2000);
+        this.playAgain();
         
     }
 
 
-    playAgain () {
+    playAgain () { //it's getting called 2x
         // what happens when game is finished (this.gameFinished === true), and we ask if player wants to play again
-            //make the game-board go away
+            //make the game-board go away    
             this.images = [];
             this.cardsClicked = [];
-            this.timer = 10;
+            this.timer = 7;
             clearInterval(clock);
             gameBoard.innerHTML = "";
-            message.style.display = "none";
-            gameStatusMessage.innerHTML = "Play again?";
-            startBtn.style.display = "block";
-            startBtn.innerHTML = "Play again";
+            gameBoard.style.display = "none";
+           
+            
+            setTimeout(() => {
+                message.style.display = "none";
+                gameStatusMessage.innerHTML = "Play again?";
+                startBtn.style.display = "block";
+                startBtn.innerHTML = "Play again";
+            }, 2000)
+
+            console.log("complete");
             //create button to restart/play again
             //display "Play again button?"
-        
     }
 
 
@@ -231,14 +248,18 @@ class gameArea {
 
         clock = setInterval(() => {
             if (this.timer >= 0) {
+                
                 countdown.innerHTML = `Time: ${this.timer}`;
-            } else {
-                this.displayGameOver();
+                this.timer--;
+            } else if(this.timer <0) {
+                countdown.innerHTML = "Oh oh, time's out!"
+                setTimeout(() => {
+                    this.displayGameOver();
+                }, 2000)
+                
             }
-
-            this.timer--;
+            
         }, 1000);
-        // displayGameOver();
     }
 
 }
@@ -247,6 +268,7 @@ const theGameArea = new gameArea();
 
 window.addEventListener('load', () => {
     console.log("page is loaded");
+    gameBoard.style.display = "none";
     startBtn.innerHTML = "Start the game";
 
 })
@@ -257,7 +279,7 @@ startBtn.addEventListener('click', (event) => {
 
 
 
-
+//playAgain is being called multiple times the first time we play again. (console.logs x 2)
 
 
 
