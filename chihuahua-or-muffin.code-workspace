@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../ironhack-remote-november22/ironhack-remote-november22/module1/lesson-09"
+		},
+		{
+			"path": "../../../ironhack-remote-november22/module1/lesson-10"
+		},
+		{
+			"path": "../../../ironhack-labs/week2/week2-day5/lab-javascript-memory-game"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "chihuahua-or-muffin"
+	}
+}

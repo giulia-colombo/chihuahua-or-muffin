@@ -4,87 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chihuahua or muffin</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Rubik">
 </head>
 <body>
 
-    <div id="screen-start">
-        <h1>Chihuahua or muffin?</h1>
-        <button type="button">Start the game</button>
-    </div>
-
     <div id="screen-play">
-        <div id="header">
-            <p>placeholder category</p>
-            <p>placeholder timer</p>
+        <!-- here the game actually happens -->
+        <div id="content">
+            <h1> Chihuahua or muffin?</h1>
+            <button id="start-btn"></button>
+
+            <h2 id="displayed-category"></h2>
+            <h2 id="message"></h2>
+            <!-- <h2 id="timer">Timer</h2> -->
+            <div id="countdown"></div>
+            <h2 id="game-status-message"></h2>
         </div>
-    
-        <div id="grid">
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
-            <div>
-                image
-            </div>
 
+        <div id="game-board">
+            <!-- imgs have to be appended here -->
         </div>
+        
     </div>
-
-    <div id="screen-won">
-        <h1>You won!</h1>
-        <button type="button">Play again</button>
-    </div>
-
-    <div id="screen-lost">
-        <h1>You lost!</h1>
-        <button type="button">Play again</button>
-    </div>
+  
 
 <script src="index.js"></script>
 </body>
 </html>
 
-<!-- 1st screen -->
