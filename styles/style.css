@@ -1,0 +1,43 @@
+/* light pink #e6b1d0 */
+
+body {
+    font-family: 'Rubik', serif;
+}
+
+#screen-play {
+    border: 1px solid black;
+    height: 800px;
+    width: 800px;
+    /* display: flex; */
+}
+
+#game-board {
+    border: 1px solid black;
+    height: 600px;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+#content {
+    /* display: flex; */
+}
+
+.card { 
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 10px;
+
+}
+
+#start-btn {
+    background-color: #e6b1d0;
+    border: 1px solid black;
+    color: black;
+    padding: 20px;
+    font-family: "Rubik", serif;
+    text-align: center;
+
+}
