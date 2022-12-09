@@ -71,7 +71,6 @@ class gameArea {
     createAppendDiv() {
             gameBoard.style.display = "flex";
             const shuffledImages = this.shuffleCards(imagesChiMuf);
-            // console.log(shuffledImages);
             shuffledImages.forEach(img => {
                 const newDiv = document.createElement("div");
                 newDiv.classList.add("card");
@@ -99,17 +98,15 @@ class gameArea {
         this.images.forEach((image) => {
             image.addEventListener("click", (event) => {
                 let clickedCard = event.target
-                // console.log(clickedCard);
+
                 let clickedCategory = clickedCard.getAttribute("category");
-                // console.log(clickedCategory);
-                // console.log(this.category);
+
                 const thisCategoryLow = this.category.toLowerCase()
                 if (clickedCategory === thisCategoryLow) {
                     message.innerHTML = `Yay! It's a ${thisCategoryLow}! :)`;
                     clickedCard.style.filter = "grayscale(100%)";
                     clickedCard.style.opacity = 0.3;
                     this.cardsClicked.push(clickedCard);
-                    // this.gameStatus = "won";
                     this.checkGameWon();
                 }
                 if (clickedCategory !== thisCategoryLow) {
@@ -118,7 +115,6 @@ class gameArea {
                     countdown.style.display = "none";
                     console.log("message: ", message, "countdown: ", countdown);
                     
-    
                     this.displayGameOver();
                     
                 }
@@ -134,7 +130,6 @@ class gameArea {
     }
 
     displayGameWon () {
-        // gameBoard.style.display = "none";
         countdown.innerHTML = "";
         countdown.style.display = "none";
         displayedCategory.style.display = "none";
@@ -148,7 +143,6 @@ class gameArea {
     }
  
     displayGameOver () {
-        // gameBoard.style.display = "none";
         countdown.innerHTML = "";
         countdown.style.display = "none";
         displayedCategory.style.display = "none";
@@ -183,11 +177,6 @@ class gameArea {
 
 
     startCountdown () {
-        //start from 10 - done
-        //decrease by 1 until 0 - done
-        //display updated value each time by updating value of the countdown div - done
-        //timer needs to stop also if wrong card is clicked
-        //when counter reaches 0, display game over
 
         clock = setInterval(() => {
             if (this.timer >= 0) {
